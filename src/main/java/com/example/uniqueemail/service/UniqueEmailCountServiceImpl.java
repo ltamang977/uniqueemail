@@ -1,5 +1,7 @@
 package com.example.uniqueemail.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -9,11 +11,14 @@ import java.util.stream.Collectors;
 @Component
 public class UniqueEmailCountServiceImpl implements UniqueEmailService{
 
+    private static final Logger log = LoggerFactory.getLogger(UniqueEmailCountServiceImpl.class);
+
     @Override
     public Integer countUniqueEmail(List<String> emails)
     {
         if(emails==null || emails.isEmpty())
         {
+           log.error("Email list not valid");
            return 0;
         }
 
@@ -28,6 +33,7 @@ public class UniqueEmailCountServiceImpl implements UniqueEmailService{
     {
         if(email==null || email.isEmpty())
         {
+            log.error("Email should not be null or empty");
             throw new IllegalArgumentException("Email should not be null or empty");
         }
 

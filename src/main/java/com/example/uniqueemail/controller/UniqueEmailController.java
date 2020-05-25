@@ -3,7 +3,6 @@ package com.example.uniqueemail.controller;
 import com.example.uniqueemail.request.UniqueEmailRequest;
 import com.example.uniqueemail.request.validator.UniqueEmailRequestValidator;
 import com.example.uniqueemail.response.UniqueEmailResponse;
-import com.example.uniqueemail.service.UniqueEmailCountServiceImpl;
 import com.example.uniqueemail.service.UniqueEmailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,8 +29,6 @@ public class UniqueEmailController {
     @PostMapping(value="/", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public UniqueEmailResponse countUniqueEmail(@RequestBody @Valid UniqueEmailRequest request) {
-
-        log.info("sending hello world response...");
 
         uniqueEmailRequestValidator.validate(request);
         Integer count = uniqueEmailService.countUniqueEmail(request.getEmails());
